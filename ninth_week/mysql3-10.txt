@@ -1,0 +1,51 @@
+3
+create table user(
+	id int,
+	name varchar(10),
+	sex char(1),
+	age tinyint unsigned,
+	phone int unsigned
+);
+insert ino user values
+	(10225501453,'克莱恩','男',27,62173123),
+	(10225501452,'奥黛丽','女',19,62371237),
+	(10225501451,'张无忌','男',38,61238712);
+4
+selects * from user
+where age between 20 and 30
+5
+delete from user
+where name like '张%';
+6
+select avg(age) from user
+7
+selects * from user
+where age between 20 and 30 and name like '张%'
+order by age desc;
+8
+create table team (
+  id INT PRIMARY KEY,
+  teamname VARCHAR(50)
+);
+
+create table score (
+  id INT PRIMARY KEY,
+  teamid INT,
+  userid INT,
+  score INT,
+  FOREIGN KEY (teamid) REFERENCES team(id),
+  FOREIGN KEY (userid) REFERENCES user(id)
+);
+9
+SELECT u.username
+FROM team t
+JOIN score s ON t.id = s.teamid
+JOIN user u ON s.userid = u.id
+WHERE t.teamname = 'ecnu' AND u.age < 20;
+10
+SELECT SUM(IFNULL(score, 0))
+FROM team t
+JOIN score s ON t.id = s.teamid
+WHERE t.teamname = 'ecnu';
+
+
